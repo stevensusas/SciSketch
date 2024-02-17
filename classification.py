@@ -6,14 +6,13 @@ load_dotenv()
 import BuildTree
 import os
 
-
 def get_completion(word, prompt):
     client = OpenAI(
         api_key="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"
     )
 
     completion = client.chat.completions.create(
-        model="gpt-4-0125-preview",
+        model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "user",
@@ -24,19 +23,17 @@ def get_completion(word, prompt):
                 + "Be very strict--if there is not a good fit that give None.",
             }
         ],
-        temperature= 0.1,
     )
-
     message = completion.choices[0].message.content
-
     return message
+
 
 def classify_word(word, node):
     # Query ChatGPT to classify the word against each child node's description
-    if not node.children:
-        return node.name
+    if node.children == []:
+        print("selected" + node.name + "for" + word)
+        return node.name   
     prompt = ""
-
     for child in node.children:
         prompt += child.name
         prompt += ", or, "
@@ -45,8 +42,9 @@ def classify_word(word, node):
 
     for child in node.children:
         if child.name == response:
+            node = child
+            print("going to" + child.name + "for" + word)
             classify_word(word, child)
-
-    # If no match found among children, return the node's name
-    return node.name
-    
+        else:
+            print("selected" + node.name + "for" + word)
+            return node.name

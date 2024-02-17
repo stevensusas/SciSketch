@@ -14,7 +14,7 @@ def generate_graphical_abstract(Abstract):
 
 
   completion = client.chat.completions.create(
-    model= "gpt-4-0125-preview",
+    model= "gpt-3.5-turbo",
     messages=[
       {"role": "user", "content": "identify a list of entities in this science abstract and their relations, storing the list of entities as an array of three element tuple of strings and the relations as an array of tuples in the format of (Entity A, Entity B, Relationship):" + Abstract},
     ],
