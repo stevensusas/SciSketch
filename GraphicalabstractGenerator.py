@@ -5,7 +5,7 @@ import os
 from graphviz import Digraph
 from openai import OpenAI
 from dotenv import load_dotenv
-import Graph 
+import Graph as Graph 
 import re
 
 def get_graph_from_abstract(abstract):
