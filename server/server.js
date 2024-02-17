@@ -20,7 +20,7 @@ app.post('/generate-graph', (req, res) => {
       return res.status(400).send('Abstract is required');
     }
   
-    const pythonProcess = spawn('/usr/local/bin/python3', ['/Users/lilianli/Desktop/SciSketch/GraphicalAbstractGenerator.py', abstract]);
+    const pythonProcess = spawn('/usr/local/bin/python3', ['.../GraphicalAbstractGenerator.py', abstract]);
 
   
     let pythonData = "";
@@ -50,16 +50,14 @@ app.post('/generate-graph', (req, res) => {
     });
 });
 
-app.post('/curl -X POST http://localhost:9999/generate-sequential-array \
--H "Content-Type: application/json" \
--d '{"protocol":"We will expose wild-type astrocytes and ASH1L-depleted astrocytes to PBS (control), LPS, and Poly(I:C) in vitro. We will then use RT-qPCR to quantify the expression of IL6 and TNF, two pro-inflammatory cytokine encoding genes upregulated by astrocytes upon activation, in all samples [9]."}'', (req, res) => {
+app.post('/generate-sequential-array', (req, res) => {
   const protocol = req.body.protocol;
     
   if (!protocol) {
       return res.status(400).send('Protocol is required');
   }
 
-  const pythonProcess = spawn('/usr/local/bin/python3', ['/Users/lilianli/Desktop/SciSketch/ExperimentalProcedureGenerator.py', protocol]);
+  const pythonProcess = spawn('/usr/local/bin/python3', ['.../ExperimentalProcedureGenerator.py', protocol]);
 
   let pythonData = '';
   pythonProcess.stdout.on('data', (data) => {
