@@ -14,40 +14,36 @@ app.get('/', (req, res) => {
 
 
 app.post('/generate-graph', (req, res) => {
-    const abstract = req.body.abstract;
-  
-    if (!abstract) {
-      return res.status(400).send('Abstract is required');
-    }
-  
-    const pythonProcess = spawn('/usr/local/bin/python3', ['./GraphicalAbstractGenerator.py', abstract]);
+  const abstract = req.body.abstract;
 
-  
-    let pythonData = "";
-    let pythonError = "";
-  
-    pythonProcess.stdout.on('data', (data) => {
-      pythonData += data.toString();
-    });
-  
-    pythonProcess.stderr.on('data', (data) => {
-      pythonError += data.toString();
-    });
-  
-    pythonProcess.on('close', (code) => {
-      if (code !== 0 || pythonError) {
-        console.error(`Python script exited with code ${code}, error: ${pythonError}`);
-        return res.status(500).send('Error executing Python script');
+  if (!abstract) {
+      return res.status(400).send('Abstract is required');
+  }
+
+  const pythonProcess = spawn('/usr/local/bin/python3', ['./GraphicalabstractGenerator.py', abstract]);
+
+  let imagePath = "";
+  pythonProcess.stdout.on('data', (data) => {
+      imagePath += data.toString();
+  });
+
+  pythonProcess.stderr.on('data', (data) => {
+      console.error(`stderr: ${data}`);
+  });
+
+  pythonProcess.on('close', (code) => {
+      if (code !== 0) {
+          console.error(`Python script exited with code ${code}`);
+          return res.status(500).send('Error executing Python script');
       }
-  
+
       try {
-        const graphData = JSON.parse(pythonData);
-        res.status(200).json(graphData);
+          res.status(200).send({ imagePath: imagePath.trim() });
       } catch (error) {
-        console.error('Error parsing Python script output:', error);
-        res.status(500).send('Error parsing Python script output');
+          console.error('Error sending graph image path:', error);
+          res.status(500).send('Error sending graph image path');
       }
-    });
+  });
 });
 
 app.post('/generate-sequential-array', (req, res) => {
