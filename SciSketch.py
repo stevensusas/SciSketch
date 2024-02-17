@@ -5,7 +5,7 @@ import TreeNode
 import BuildTree
 import IconMappingDictionary
 
-Abstract = "Neurodegenerative diseases are characterized by the formation and propagation of protein aggregates, especially amyloid fibrils. However, what normally suppresses protein misfolding and aggregation in metazoan cells remains incompletely understood. Here, we show that TRIM11, a member of the metazoan tripartite motif (TRIM) family, both prevents the formation of protein aggregates and dissolves pre-existing protein deposits, including amyloid fibrils. These molecular chaperone and disaggregase activities are ATP independent. They enhance folding and solubility of normal proteins and cooperate with TRIM11 SUMO ligase activity to degrade aberrant proteins. TRIM11 abrogates α-synuclein fibrillization and restores viability in cell models of Parkinson's disease (PD). Intracranial adeno-associated viral delivery of TRIM11 mitigates α-synuclein-mediated pathology, neurodegeneration, and motor impairments in a PD mouse model. Other TRIMs can also function as ATP-independent molecular chaperones and disaggregases. Thus, we define TRIMs as a potent and multifunctional protein quality-control system in metazoa, which might be applied to treat neurodegenerative diseases."
+Abstract = "Here, we show that TRIM11, a member of the metazoan tripartite motif (TRIM) family, both prevents the formation of protein aggregates and dissolves pre-existing protein deposits, including amyloid fibrils. These molecular chaperone and disaggregase activities are ATP independent. They enhance folding and solubility of normal proteins and cooperate with TRIM11 SUMO ligase activity to degrade aberrant proteins. TRIM11 abrogates α-synuclein fibrillization and restores viability in cell models of Parkinson's disease (PD). Intracranial adeno-associated viral delivery of TRIM11 mitigates α-synuclein-mediated pathology, neurodegeneration, and motor impairments in a PD mouse model."
 
 Protocol = "We will expose wild-type astrocytes and ASH1L-depleted astrocytes to PBS (control), LPS, and Poly(I:C) in vitro. We will then use RT-qPCR to quantify the expression of IL6 and TNF, two pro-inflammatory cytokine encoding genes upregulated by astrocytes upon activation, in all samples [9]."
 
@@ -21,7 +21,6 @@ def SciSketch(Option, Input):
         
         print(Graph.display())
         print(mapping.display())
-        print(mapping.is_empty())
         return mapping
         
 

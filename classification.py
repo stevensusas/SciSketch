@@ -6,19 +6,29 @@ load_dotenv()
 import BuildTree
 import os
 
-def get_completion(word, prompt, model="gpt-4-0125-preview"):
+
+def get_completion(word, prompt):
     client = OpenAI(
-    api_key = "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"
+        api_key="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"
     )
-    
+
     completion = client.chat.completions.create(
-    model= "gpt-4-0125-preview",
-    messages=[
-        {"role": "user", "content": "Is '{word}' a {prompt}? Give a one word response--the best fit, or none. For example, if it is an action, simply answer 'action'. Please be conservative in your answer. If you are not very sure if the given word belongs to any classification, answer 'none'. Give a one word response. Thanks!"}
-            ],
-  )
-    
+        model="gpt-4-0125-preview",
+        messages=[
+            {
+                "role": "user",
+                "content": "Classify the following object/action:"
+                + word
+                + ", into one of the following categories that fits the best, just give me the category as a response--nothing else."
+                + prompt
+                + "Be very strict--if there is not a good fit that give None.",
+            }
+        ],
+        temperature= 0.1,
+    )
+
     message = completion.choices[0].message.content
+
     return message
 
 def classify_word(word, node):
@@ -38,5 +48,5 @@ def classify_word(word, node):
             classify_word(word, child)
 
     # If no match found among children, return the node's name
-    return "none"
+    return node.name
     
