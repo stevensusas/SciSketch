@@ -10,7 +10,5 @@ class IconMappingDictionary(dict):
 
     def display(self):
         for key, value in self.items():
-            print(f"{key}: {value}")
-    
-    def is_empty(self):
-        return len(self) == 0
+            print("Just Mapped:" + key + " to " + value)
+        print("Mapping Complete. End of program.")
