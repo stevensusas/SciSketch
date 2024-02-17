@@ -12,10 +12,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to SciSketch');
 });
 
-app.post('/generate-sketch', (req, res) => {
-  return res.status(200).json({ sketch: 'https://www.sciencemag.org/sites/default/files/styles/article_main_large/public/images/cc_iStock-478639870_16x9.jpg?itok=3Z3Z3zvz' });
-
-});
 
 app.post('/generate-graph', (req, res) => {
     const abstract = req.body.abstract;
@@ -52,6 +48,36 @@ app.post('/generate-graph', (req, res) => {
         res.status(500).send('Error parsing Python script output');
       }
     });
+});
+
+app.post('/curl -X POST http://localhost:9999/generate-sequential-array \
+-H "Content-Type: application/json" \
+-d '{"protocol":"We will expose wild-type astrocytes and ASH1L-depleted astrocytes to PBS (control), LPS, and Poly(I:C) in vitro. We will then use RT-qPCR to quantify the expression of IL6 and TNF, two pro-inflammatory cytokine encoding genes upregulated by astrocytes upon activation, in all samples [9]."}'', (req, res) => {
+  const protocol = req.body.protocol;
+    
+  if (!protocol) {
+      return res.status(400).send('Protocol is required');
+  }
+
+  const pythonProcess = spawn('/usr/local/bin/python3', ['/Users/lilianli/Desktop/SciSketch/ExperimentalProcedureGenerator.py', protocol]);
+
+  let pythonData = '';
+  pythonProcess.stdout.on('data', (data) => {
+      pythonData += data.toString();
+  });
+
+  pythonProcess.on('close', (code) => {
+      if (code !== 0) {
+          return res.status(500).send('Error executing Python script');
+      }
+
+      try {
+          const jsonData = JSON.parse(pythonData);
+          res.status(200).json(jsonData);
+      } catch (error) {
+          res.status(500).send('Error parsing Python script output');
+      }
+  });
 });
 
 app.listen(port, () => {
