@@ -40,3 +40,6 @@ class Graph:
     def display(self):
         for vertex, edges in self.adjacency_list.items():
             print(f"{vertex}: {edges}")
+
+    def get_vertex_list(self):
+        return list(self.adjacency_list.keys())
