@@ -26,3 +26,4 @@ class TreeNode:
         for child in self.children:
             child.traverse()
 
+print("Hello")
