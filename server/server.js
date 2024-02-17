@@ -20,7 +20,7 @@ app.post('/generate-graph', (req, res) => {
       return res.status(400).send('Abstract is required');
     }
   
-    const pythonProcess = spawn('/usr/local/bin/python3', ['.../GraphicalAbstractGenerator.py', abstract]);
+    const pythonProcess = spawn('/usr/local/bin/python3', ['./GraphicalAbstractGenerator.py', abstract]);
 
   
     let pythonData = "";
@@ -57,7 +57,7 @@ app.post('/generate-sequential-array', (req, res) => {
       return res.status(400).send('Protocol is required');
   }
 
-  const pythonProcess = spawn('/usr/local/bin/python3', ['.../ExperimentalProcedureGenerator.py', protocol]);
+  const pythonProcess = spawn('/usr/local/bin/python3', ['./ExperimentalProcedureGenerator.py', protocol]);
 
   let pythonData = '';
   pythonProcess.stdout.on('data', (data) => {
@@ -71,6 +71,7 @@ app.post('/generate-sequential-array', (req, res) => {
 
       try {
           const jsonData = JSON.parse(pythonData);
+          console.log(jsonData);
           res.status(200).json(jsonData);
       } catch (error) {
           res.status(500).send('Error parsing Python script output');
