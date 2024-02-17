@@ -129,14 +129,7 @@ const HomePage = () => {
                       Abstract Generation
                     </Text>
                     <Text mb={4}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+                    SciSketch can automatically analyze the content of life science papers and generate informative and visually appealing graphical abstracts. This tool will significantly reduce the time and effort required to create graphical abstracts and enhance the accessibility and understanding of scientific literature.
                     </Text>
                     <Link href="/abstract-generation">
                       <Button bg="brand.100" color="white" width={"10vw"}>
@@ -171,14 +164,7 @@ const HomePage = () => {
                       Experiment Generation
                     </Text>
                     <Text mb={4}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+                    Enter your experimental protocol or description of procedure here! SciSketch will automatically extract key reagents, experimental materials, animal/cell models used, as well as key experimental steps to illustrate the experiment graphically.
                     </Text>
                     <Link href="/experiment-generation">
                       <Button bg="brand.100" color="white" width={"10vw"}>

@@ -39,12 +39,17 @@ export default function AbstractGenerationPage() {
     setImageGenerated(false);
     setIsLoading(true);
     setTimeout(() => {
-      const url = "path-to-your-generated-image.png";
+      const url = "graph.png";
       setGeneratedImageUrl(url);
       setImageGenerated(true);
       setIsLoading(false);
-    }, 2000);
+    }, 5000);
   };
+
+  let handleInputChange = (e: { target: { value: any; }; }) => {
+    let inputValue = e.target.value
+    setText(inputValue)
+  }
 
   const videoBlurStyle = `
   .background-video {
@@ -87,7 +92,7 @@ export default function AbstractGenerationPage() {
           </Box>
         </>
         <Box
-          position="absolute"
+          position="fixed"
           top="0"
           left="0"
           width="100vw"
@@ -117,13 +122,7 @@ export default function AbstractGenerationPage() {
               Abstract Generation
             </Text>
             <Text fontSize="large" align={"left"} color="white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            SciSketch can automatically analyze the content of life science papers and generate informative and visually appealing graphical abstracts. This tool will significantly reduce the time and effort required to create graphical abstracts and enhance the accessibility and understanding of scientific literature.
             </Text>
           </VStack>
 
@@ -132,7 +131,7 @@ export default function AbstractGenerationPage() {
           <VStack
             boxShadow="dark-lg"
             spacing={4}
-            align="stretch"
+            //align="stretch"
             mt={4}
             width="50vw"
             backdropFilter={"blur(8px) brightness(150%)"}
@@ -145,6 +144,8 @@ export default function AbstractGenerationPage() {
               size="md"
               background={"white"}
               height={"20vh"}
+              value={text}
+              onChange={handleInputChange}
             />
             <Button
               color="white"
@@ -164,13 +165,21 @@ export default function AbstractGenerationPage() {
             </Button>
             <Box position="relative">
               {imageGenerated && (
-                <Skeleton
-                  my="4"
-                  startColor="brand.500"
-                  endColor="brand.100"
-                  height="40vh"
+                // <Skeleton
+                //   my="4"
+                //   startColor="brand.500"
+                //   endColor="brand.100"
+                //   height="40vh"
+                //   borderRadius={"10"}
+                // ></Skeleton>
+                <Image
+                  src={generatedImageUrl}
+                  alt="Generated Image"
                   borderRadius={"10"}
-                ></Skeleton>
+                  boxShadow="dark-lg"
+                  width="800px"
+                  //height="40vh"
+                  my="4" />
               )}
             </Box>
           </VStack>
