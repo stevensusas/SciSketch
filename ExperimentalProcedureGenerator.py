@@ -53,3 +53,4 @@ if __name__ == "__main__":
     protocol = " ".join(sys.argv[1:])
     print(process_sequential_protocol(protocol))
     # print(result)  # Ensure the output is printed or logged
+

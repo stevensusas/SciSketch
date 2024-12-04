@@ -6,7 +6,7 @@ class TreeNode:
     def add_child(self, child):
         self.children.append(child)
 
-def build_tree():
+def build_object_tree():
     object_tree = TreeNode("Object")
 
     object_layer1 = ["Molecule", "Experimental Reagent", "Cell & Animal Models", "Disease/Condition"]
@@ -24,6 +24,9 @@ def build_tree():
     disease_condition_layer1 = ["Neurological Disease", "Other Disease"]
     object_tree.children[3].children = [TreeNode(name) for name in disease_condition_layer1]
 
+    return object_tree
+
+def build_action_tree():
     action_tree = TreeNode("Action")
 
     action_layer1 = ["Cell Culturing", "Treatment", "Sample Extraction", "Molecular Biology Experiment"]
@@ -31,8 +34,12 @@ def build_tree():
 
     molecular_biology_experiment_layer1 = ["Western Blot", "qPCR"]
     action_tree.children[3].children = [TreeNode(name) for name in molecular_biology_experiment_layer1]
+    return action_tree
 
-    master_icon_db = TreeNode("Master Icon DB")
-    master_icon_db.children = [object_tree, action_tree]
+def build_small_One_layer_tree():
+    object_tree = TreeNode("Object")
 
-    return master_icon_db
+    object_layer1 = ["Molecule", "Experimental Reagent", "Cell & Animal Models", "Disease/Condition"]
+    object_tree.children = [TreeNode(name) for name in object_layer1]
+
+    return object_tree
